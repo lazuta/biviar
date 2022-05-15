@@ -10,7 +10,18 @@
 		"title": "{{appTitle}}",
 		"description": "{{appDescription}}",
 		"resources": "resources.json",
-		"ach": "ach"
+		"ach": "ach",
+		"dataSources": {
+			"mainService": {
+				"uri": "http://localhost:8010/proxy",
+				"type": "OData",
+				"settings": {
+					"odataVersion": "2.0",
+					"localUri": "localService/metadata.xml"
+				}
+			}
+		}
+		
 	},
 
 	"sap.ui": {
@@ -55,7 +66,16 @@
 				"settings": {
 					"bundleName": "sap.ui.demo.basicTemplate.i18n.i18n"
 				}
+			},
+			"data": {
+				"type": "sap.ui.model.odata.v2.ODataModel",
+				"dataSource": "mainService",
+				"preload": true,
+				"settings": {
+					"useBatch": false
+				}
 			}
+			
 		},
 		"resources": {
 			"css": [{

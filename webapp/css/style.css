@@ -1,1 +1,40 @@
-/* add your custom styles here */
+:root {
+    --bg: #F5F6F7;
+    --button-color: #6BBBB5;
+    --text-color: #393333;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#app {
+    color: var(-text-color);
+}
+
+.sapUiSmallMarginEnd > span {
+    margin-top: 10px;
+    background-color: var(--button-color);
+    border: 1px solid var(--button-color);
+    transition: .5s;
+}
+
+.sapUiSmallMarginEnd > span > span:nth-child(1) {
+    margin-right: 10px;
+}
+
+.sapUiSmallMarginEnd:hover > span > span:nth-child(1) {
+    margin-right: 10px;
+    animation: rotate360 1s forwards; 
+}
+
+#container-basicTemplate---home--page-title-inner {
+    color: #6BBBB5;
+}
+
+@keyframes rotate360 {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(180deg); }
+}

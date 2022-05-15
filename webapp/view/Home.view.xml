@@ -2,10 +2,65 @@
 	controllerName="sap.ui.demo.basicTemplate.controller.Home"
 	displayBlock="true"
 	xmlns="sap.m"
-	xmlns:mvc="sap.ui.core.mvc">
-	<Page
-		id="page"
-		title="{i18n>title}">
-		<content></content>
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:c="sap.ui.core">
+	<Page id="page">
+		<headerContent>
+			<ActionSelect
+				id="language"
+				items="{language>/LanguageCollection}"
+				change="onChangeLanguage">
+				<items>
+					<c:Item key="{language>value}" text="{language>title}" />
+				</items>
+			</ActionSelect>
+		</headerContent>
+		<content>
+			<Image
+				src="images/Header.png"
+				width="100%"
+				tooltip="Movie illustration" />
+			<Table id="idSuppliersTable"
+				inset="false"
+				items="{data>/Suppliers}">
+				<columns>
+					<Column
+						width="12em">
+						<Text text="{i18n>ID}" />
+					</Column>
+					<Column
+						minScreenWidth="Tablet"
+						demandPopin="true">
+						<Text text="{i18n>name}" />
+					</Column>
+					<Column
+						minScreenWidth="Tablet"
+						hAlign="End">
+						<Text text="{i18n>country}" />
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem vAlign="Middle">
+						<cells>
+							<ObjectIdentifier
+								text="{data>ID}"/>
+							<Text
+								text="{data>Name}" />
+							<Text
+								text="{data>Address/Country}" />
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+			<Button id="addSupplierDialog"
+					icon="sap-icon://add"
+					text="{i18n>addSupplierButton}"
+					press="onOpenDialog"
+					class="sapUiSmallMarginEnd">
+				<layoutData>
+					<FlexItemData growFactor="1" />
+				</layoutData>
+			</Button>
+		</content>
 	</Page>
 </mvc:View>

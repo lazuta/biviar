@@ -10,7 +10,9 @@
     "karma-ci": "karma start karma-ci.conf.js",
     "watch": "npm run karma",
     "test": "npm run lint && rimraf coverage && npm run karma-ci",
-    "build": "rimraf dist && ui5 build --a"
+    "build": "rimraf dist && ui5 build --a",
+    "proxy": "node proxy.js",
+    "local-proxy": "lcp --proxyUrl https://services.odata.org/V2/(S(plhh5wax2hmk5tsdhrobyjg5))/OData/OData.svc/"
   },
   "devDependencies": {
     "@ui5/cli": "^2.14.2",
@@ -19,6 +21,8 @@
     "karma-chrome-launcher": "^3.1.0",
     "karma-coverage": "^2.1.0",
     "karma-ui5": "^2.4.0",
-    "rimraf": "^3.0.2"
+    "rimraf": "^3.0.2",
+    "cors-anywhere": "^0.4.1",
+    "local-cors-proxy": "^1.0.2"
   }
 }

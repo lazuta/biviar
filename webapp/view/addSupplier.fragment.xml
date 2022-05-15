@@ -1,0 +1,52 @@
+<c:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:c="sap.ui.core"
+    xmlns:f="sap.ui.layout.form">
+    <Dialog
+        id="addSupplier"
+        title="{i18n>addSupplier}">
+
+
+        <f:SimpleForm editable="true">
+            <f:content>
+                <Label text="Name" required="true" tooltip="required"/>
+			    <Input id="name" value="{supplier>/name}" />
+                
+                <Label text="Concurrency"  required="true" tooltip="required"/>
+			    <Input id="concurrency" value="{supplier>/concurrency}" />
+
+                <Label text="Street"  required="true" tooltip="required"/>
+			    <Input id="street" value="{supplier>/street}" />
+
+                <Label text="City"  required="true" tooltip="required"/>
+			    <Input id="city" value="{supplier>/city}" />
+
+                <Label text="State"  required="true" tooltip="required"/>
+			    <Input id="state" value="{supplier>/state}" />
+
+                <Label text="ZipCode"  required="true" tooltip="required"/>
+			    <Input id="zipCode" value="{supplier>/zipCode}" />
+                
+                <Label text="Country"  required="true" tooltip="required"/>
+                <ActionSelect
+                    id="country"
+                    items="{Country>/}">
+                    <items>
+                        <c:Item key="{Country>alpha3Code}" text="{Country>alpha3Code}" />
+                    </items>
+                </ActionSelect>
+            </f:content>
+        </f:SimpleForm>
+        <beginButton>
+            <Button
+                text="{i18n>close}"
+                press="onCloseDialog"/>
+        </beginButton>
+        <endButton>
+             <Button
+                type="Accept"
+                text="{i18n>save}"
+                press="onSubmit"/>
+        </endButton>
+    </Dialog>
+</c:FragmentDefinition>
