@@ -12,7 +12,7 @@
     "test": "npm run lint && rimraf coverage && npm run karma-ci",
     "build": "rimraf dist && ui5 build --a",
     "proxy": "node proxy.js",
-    "local-proxy": "lcp --proxyUrl https://services.odata.org/V2/(S(plhh5wax2hmk5tsdhrobyjg5))/OData/OData.svc/"
+    "local-proxy": "lcp --proxyUrl https://services.odata.org/V2/(S(kyiabqbapmo0x4x5v5xeyyby))/OData/OData.svc/"
   },
   "devDependencies": {
     "@ui5/cli": "^2.14.2",

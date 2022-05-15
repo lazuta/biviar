@@ -64,7 +64,12 @@ sap.ui.define([
 			this.byId('addSupplier').close();
 		},
 
-		onSubmit: function () {
+		onSubmit: function (oEvent) {
+			var oButton = oEvent.getSource();
+			oButton.setEnabled(false);
+			var i18nModel = this.getView().getModel("i18n").getResourceBundle();
+			oButton.setText(i18nModel.getText("saving"));
+
 			var oView = this.getView();
 
 			var isNullFields = false;
@@ -110,10 +115,15 @@ sap.ui.define([
 			}
 
 			if (isNullFields) {
-				return MessageBox.error("All fields are required!");
+				oButton.setText(i18nModel.getText("save"));
+				oButton.setEnabled(true);
+
+				MessageBox.error("All fields are required!");
+
+				return false;
 			}
 			
-			var oModel = new sap.ui.model.odata.v2.ODataModel("proxy/https/services.odata.org/V2/(S(plhh5wax2hmk5tsdhrobyjg5))/OData/OData.svc/");
+			var oModel = new sap.ui.model.odata.v2.ODataModel("proxy/https/services.odata.org/V2/(S(kyiabqbapmo0x4x5v5xeyyby))/OData/OData.svc/");
 			oModel.setUseBatch(false);
 			oModel.setHeaders({
 				"Content-type":"application/json"
@@ -122,15 +132,16 @@ sap.ui.define([
 			oModel.create("/Suppliers", newData, {
 				method: "POST", 
 				success: function (oSuccess) {
-					console.log("Success", oSuccess);	
 					var oTable = oView.byId("idSuppliersTable");
 					var oBinding = oTable.getBinding("items");
 					oBinding.refresh();
 
 					oView.byId('addSupplier').close();
-					MessageBox.information("Supplier added!");
+					MessageBox.information(i18nModel.getText("supplierAdded"));
 				},
-				error: function (oError) { return console.log("Error", oError) }
+				error: function (oError) { 
+					MessageBox.error("Error message");
+				 }
 			});
 		}
 	});
